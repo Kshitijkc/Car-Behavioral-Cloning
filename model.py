@@ -137,7 +137,7 @@ def main():
     parser.add_argument('-d', help='data directory',        dest='data_dir',          type=str,   default='/content/Car-Behavioral-Cloning')
     parser.add_argument('-t', help='test size fraction',    dest='test_size',         type=float, default=0.2)
     parser.add_argument('-k', help='drop out probability',  dest='keep_prob',         type=float, default=0.5)
-    parser.add_argument('-n', help='number of epochs',      dest='nb_epoch',          type=int,   default=100)
+    parser.add_argument('-n', help='number of epochs',      dest='nb_epoch',          type=int,   default=3)
     parser.add_argument('-s', help='samples per epoch',     dest='samples_per_epoch', type=int,   default=20000)
     parser.add_argument('-b', help='batch size',            dest='batch_size',        type=int,   default=40)
     parser.add_argument('-o', help='save best models only', dest='save_best_only',    type=s2b,   default='false')
