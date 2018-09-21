@@ -96,7 +96,7 @@ def train_model(model, args, X_train, X_valid, y_train, y_valid):
     model.summary()
     
     # include the epoch in the file name. (uses `str.format`)
-    checkpoint_path = "/training/cp-{epoch:03d}.ckpt"
+    checkpoint_path = "training/cp-{epoch:03d}.ckpt"
     checkpoint_dir = os.path.dirname(checkpoint_path)
     
     checkpoint = ModelCheckpoint(checkpoint_path,
