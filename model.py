@@ -74,7 +74,9 @@ def build_model(args):
     model.add(Dense(50, activation='elu'))
     model.add(Dense(10, activation='elu'))
     model.add(Dense(1))
-    model.summary()
+        
+    #gradient descent
+    model.compile(loss='mean_squared_error', optimizer=Adam(lr=args.learning_rate))
 
     return model
 
@@ -90,7 +92,14 @@ def train_model(model, args, X_train, X_valid, y_train, y_valid):
     # made based on either the maximization or the minimization of the monitored quantity. For val_acc, 
     #this should be max, for val_loss this should be min, etc. In auto mode, the direction is automatically
     # inferred from the name of the monitored quantity.
-    checkpoint = ModelCheckpoint('model-{epoch:03d}.h5',
+     
+    model.summary()
+    
+    # include the epoch in the file name. (uses `str.format`)
+    checkpoint_path = "/training/cp-{epoch:03d}.ckpt"
+    checkpoint_dir = os.path.dirname(checkpoint_path)
+    
+    checkpoint = ModelCheckpoint(checkpoint_path,
                                  monitor='val_loss',
                                  verbose=1,
                                  save_best_only=args.save_best_only,
@@ -102,8 +111,8 @@ def train_model(model, args, X_train, X_valid, y_train, y_valid):
     #add up all those differences for as many data points as we have
     #divide by the number of them
     #that value is our mean squared error! this is what we want to minimize via
-    #gradient descent
-    model.compile(loss='mean_squared_error', optimizer=Adam(lr=args.learning_rate))
+#     #gradient descent
+#     model.compile(loss='mean_squared_error', optimizer=Adam(lr=args.learning_rate))
 
     #Fits the model on data generated batch-by-batch by a Python generator.
 
@@ -140,7 +149,7 @@ def main():
     parser.add_argument('-n', help='number of epochs',      dest='nb_epoch',          type=int,   default=1)
     parser.add_argument('-s', help='samples per epoch',     dest='samples_per_epoch', type=int,   default=20000)
     parser.add_argument('-b', help='batch size',            dest='batch_size',        type=int,   default=40)
-    parser.add_argument('-o', help='save best models only', dest='save_best_only',    type=s2b,   default='false')
+    parser.add_argument('-o', help='save best models only', dest='save_best_only',    type=s2b,   default='False')
     parser.add_argument('-l', help='learning rate',         dest='learning_rate',     type=float, default=1.0e-4)
     args = parser.parse_args()
 
