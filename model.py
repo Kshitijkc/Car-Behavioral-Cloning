@@ -103,7 +103,7 @@ def train_model(model, args, X_train, X_valid, y_train, y_valid):
                                  monitor='val_loss',
                                  verbose=1,
                                  save_best_only=args.save_best_only,
-                                 save_weights_only=False,
+                                 save_weights_only=True,
                                  mode='auto')
     #save_weights_only=False,
     #calculate the difference between expected steering angle and actual steering angle
