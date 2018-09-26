@@ -128,6 +128,8 @@ def train_model(model, args, X_train, X_valid, y_train, y_valid):
                         nb_val_samples=len(X_valid),
                         callbacks=[checkpoint],
                         verbose=1)
+    
+    model.save("model_final")
 
 #for command line args
 def s2b(s):
