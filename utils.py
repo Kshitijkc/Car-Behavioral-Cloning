@@ -150,7 +150,7 @@ def batch_generator(data_dir, image_paths, steering_angles, batch_size, is_train
             else:
                 image = load_image(data_dir, center) 
             # add the image and steering angle to the batch
-            #images[i] = preprocess(image)
+            images[i] = preprocess(image)
             images[i] = image
             steers[i] = steering_angle
             i += 1
